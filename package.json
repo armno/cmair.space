@@ -1,0 +1,14 @@
+{
+  "name": "a",
+  "description": "",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "scripts": {
+		"start": "lite-server"
+  },
+  "author": "armno",
+  "license": "MIT",
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  }
+}
