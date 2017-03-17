@@ -8,11 +8,12 @@ A think where I can see Chiang Mai's AQI. WIP.
 $ yarn
 ```
 
-create `server/config.js` file with aqicn.org API token
+create `server/config.js` file with aqicn.org API token. `gh` is the webhook secret key (i use webhook to auto-deploy).
 
 ```js
 const config = {
-	token: '<YOUR_TOKEN>'
+	token: 'aqicn.org api token',
+	gh: 'github webhook secret'
 };
 module.exports = config;
 ```
