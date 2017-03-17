@@ -7,6 +7,5 @@ Desktop.ini
 Thumbs.db
 
 node_modules/
-bower_components/
-lib/
-jspm_packages/
+
+server/config.js
