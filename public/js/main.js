@@ -1,4 +1,17 @@
 (function () {
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('/js/worker.js')
+			.then(() => {
+				console.log('ServiceWorker is registered.');
+			}, () => {
+				console.warn('Failed to register ServiceWorker.');
+			});
+	} else {
+		console.warn('ServiceWorker is not supported.');
+	}
+})();
+
+(function () {
 
 	const url = `/api`;
 

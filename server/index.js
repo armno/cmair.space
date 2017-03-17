@@ -6,13 +6,12 @@ const port = process.env.PORT || 4300;
 const routes = require('./routes');
 
 app.use(cors());
-
+app.use('/api', routes);
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
 app.use(bodyParser.json());
-
-app.use('/api', routes);
 
 app.listen(port);
 console.log('server running on port ' + port);
