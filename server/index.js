@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const port = process.env.PORT || 4300;
 const routes = require('./routes');
-const gh = requrie('express-github-webhook');
+const gh = require('express-github-webhook');
 const config = require('./config');
 
 app.use(cors());
