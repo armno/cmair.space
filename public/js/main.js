@@ -1,6 +1,6 @@
 (function () {
 	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('/js/worker.js')
+		navigator.serviceWorker.register('/worker.js')
 			.then(() => {
 				console.log('ServiceWorker is registered.');
 			}, () => {
@@ -14,6 +14,17 @@
 (function () {
 
 	const url = `/api`;
+
+	if ('caches' in window) {
+		caches.match(url).then(json => {
+			if (json) {
+				updateUI(json.aqi, json.level, json.cityName, json.updatedAt);
+				updateTextValue(json.level);
+				setPageTitle(json.level);
+			}
+		});
+	}
+
 
 	fetch(url)
 		.then(response => response.json())

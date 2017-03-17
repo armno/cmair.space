@@ -4,18 +4,17 @@
   "version": "1.0.0",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "lite-server"
+    "start": "nodemon server/index.js"
   },
   "author": "armno",
   "license": "MIT",
-  "devDependencies": {
-    "lite-server": "^2.3.0"
-  },
+  "devDependencies": {},
   "dependencies": {
     "body-parser": "^1.17.1",
     "cors": "^2.8.1",
     "express": "^4.15.2",
     "express-github-webhook": "^1.0.5",
+    "request": "^2.81.0",
     "request-promise": "^4.2.0"
   }
 }
