@@ -20,6 +20,7 @@
 		.then(json => {
 			updateUI(json.aqi, json.level, json.cityName, json.updatedAt);
 			updateTextValue(json.level);
+			setPageTitle(json.level);
 		});
 
 	function $(selector) {
@@ -49,5 +50,9 @@
 		}
 
 		$textElement.innerText = level.toLowerCase();
+	}
+
+	function setPageTitle(title) {
+		document.title = `${title} - Chiang Mai AQI`;
 	}
 })();
