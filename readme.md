@@ -12,8 +12,8 @@ create `server/config.js` file with aqicn.org API token. `gh` is the webhook sec
 
 ```js
 const config = {
-	token: 'aqicn.org api token',
-	gh: 'github webhook secret'
+  token: 'aqicn.org api token',
+  gh: 'github webhook secret'
 };
 module.exports = config;
 ```
