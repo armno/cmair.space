@@ -48,6 +48,10 @@
 	}
 
 	function updateTextValue(level) {
+		if (!level) {
+			return;
+		}
+
 		const $textElement = $('#aqi-text-value');
 		if (level === 'UNHEALTHY-SENSITIVE') {
 			$textElement.innerText = 'Unhealthy';
