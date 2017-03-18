@@ -2,6 +2,7 @@ const express = require('express');
 const rp = require('request-promise');
 const router = express.Router();
 const config = require('./config');
+const moment = require('moment');
 
 router.get('/', getAqiData);
 module.exports = router;
@@ -15,11 +16,12 @@ function getAqiData(req, res) {
 			json: true
 		})
 		.then(json => {
+			const updatedTime = moment(`${json.data.time.s}${json.data.time.tz}`).fromNow();
 			res.json({
 				aqi: json.data.aqi,
 				level: getAqiLevel(json.data.aqi),
 				cityName: json.data.city.name,
-				updatedAt: json.data.time.s + json.data.time.tz
+				updatedAt: updatedTime
 			});
 		});
 }
