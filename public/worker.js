@@ -1,4 +1,4 @@
-const cacheName = 'cm-aqi-4';
+const cacheName = 'cm-aqi-5';
 const dataCacheName = 'cm-aqi-data';
 const filesToCache = [
 	'/',
