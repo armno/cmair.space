@@ -1,14 +1,12 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const port = process.env.PORT || 4300;
 const routes = require('./routes');
 const gh = require('express-github-webhook');
 const config = require('./config');
 const exec = require('child_process').exec;
 
-app.use(cors());
 app.use('/api', routes);
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
