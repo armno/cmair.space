@@ -21,7 +21,7 @@ module.exports = config;
 start local server with `nodemon`
 
 ```sh
-$ nodemon server/index.js
+$ yarn start
 ```
 
 open `http://localhost:4300`
