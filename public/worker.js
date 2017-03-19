@@ -1,5 +1,5 @@
-const cacheName = 'cm-aqi-7';
-const dataCacheName = 'cm-aqi-data-2';
+const cacheName = 'cm-aqi-8';
+const dataCacheName = 'cm-aqi-data-3';
 const filesToCache = [
 	'/',
 	'/index.html',
@@ -39,6 +39,7 @@ self.addEventListener('fetch', function(e) {
 	if (e.request.url.indexOf(dataUrl) > -1) {
 		e.respondWith(
 			caches.open(dataCacheName).then(function (cache) {
+				console.log('[ServiceWorker] getting data from cache', cache)
 				return fetch(e.request).then(function (response) {
 					cache.put(e.request.url, response.clone());
 					return response;

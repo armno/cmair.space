@@ -40,9 +40,9 @@
 	}
 
 	function updateUIValues(aqi, level, cityName, updatedAt) {
-		$('#aqi-value').innerText = aqi;
-		$('#location').innerText = cityName;
-		$('#updated-at').innerText = updatedAt;
+		$('#aqi-value').innerText = aqi || 0;
+		$('#location').innerText = cityName || '';
+		$('#updated-at').innerText = updatedAt || '';
 
 		document.querySelector('#container')
 			.classList.add(`container--${level}`);
