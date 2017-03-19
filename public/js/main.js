@@ -16,11 +16,13 @@
 	const url = `/api`;
 
 	if ('caches' in window) {
-		caches.match(url).then(json => {
-			if (json) {
-				updateUIValues(json.aqi, json.level, json.cityName, json.updatedAt);
-				updateTextValue(json.level);
-				setPageTitle(json.level);
+		caches.match(url).then(response => {
+			if (response) {
+				response.json().then(json => {
+					updateUIValues(json.aqi, json.level, json.cityName, json.updatedAt);
+					updateTextValue(json.level);
+					setPageTitle(json.level);
+				});
 			}
 		});
 	}

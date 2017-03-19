@@ -1,5 +1,5 @@
-const cacheName = 'cm-aqi-8';
-const dataCacheName = 'cm-aqi-data-3';
+const cacheName = 'cm-aqi-10';
+const dataCacheName = 'cm-aqi-data-5';
 const filesToCache = [
 	'/',
 	'/index.html',
@@ -39,7 +39,6 @@ self.addEventListener('fetch', function(e) {
 	if (e.request.url.indexOf(dataUrl) > -1) {
 		e.respondWith(
 			caches.open(dataCacheName).then(function (cache) {
-				console.log('[ServiceWorker] getting data from cache', cache)
 				return fetch(e.request).then(function (response) {
 					cache.put(e.request.url, response.clone());
 					return response;
@@ -48,7 +47,9 @@ self.addEventListener('fetch', function(e) {
 		)
 	} else {
 		e.respondWith(
-			caches.match(e.request).then(function(response) {
+			caches.match(e.request, {
+      	ignoreSearch: true
+    	}).then(function(response) {
 				return response || fetch(e.request);
 			})
 		);
