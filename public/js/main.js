@@ -44,8 +44,11 @@
 		$('#location').innerText = cityName || '';
 		$('#updated-at').innerText = updatedAt || '';
 
-		document.querySelector('#container')
-			.classList.add(`container--${level}`);
+		if (level) {
+			document.querySelector('#container')
+				.classList.add(`container--${level}`);
+		}
+
 	}
 
 	function updateTextValue(level) {

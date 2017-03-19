@@ -28,6 +28,8 @@ a {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+
+	transition: background-color 1.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 	.container--inverted {
