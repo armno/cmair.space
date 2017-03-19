@@ -18,7 +18,7 @@
 	if ('caches' in window) {
 		caches.match(url).then(json => {
 			if (json) {
-				updateUI(json.aqi, json.level, json.cityName, json.updatedAt);
+				updateUIValues(json.aqi, json.level, json.cityName, json.updatedAt);
 				updateTextValue(json.level);
 				setPageTitle(json.level);
 			}
@@ -29,8 +29,9 @@
 	fetch(url)
 		.then(response => response.json())
 		.then(json => {
-			updateUI(json.aqi, json.level, json.cityName, json.updatedAt);
+			updateUIValues(json.aqi, json.level, json.cityName, json.updatedAt);
 			updateTextValue(json.level);
+			updateContainerClass(json.level);
 			setPageTitle(json.level);
 		});
 
@@ -38,7 +39,7 @@
 		return document.querySelector(selector);
 	}
 
-	function updateUI(aqi, level, cityName, updatedAt) {
+	function updateUIValues(aqi, level, cityName, updatedAt) {
 		$('#aqi-value').innerText = aqi;
 		$('#location').innerText = cityName;
 		$('#updated-at').innerText = updatedAt;
@@ -69,5 +70,11 @@
 
 	function setPageTitle(title) {
 		document.title = `${title} - Chiang Mai AQI`;
+	}
+
+	function updateContainerClass(level) {
+		if (level === 'MODERATE' || level === 'UNHEALTHY-SENSITIVE') {
+			$('#container').classList.add('container--inverted');
+		}
 	}
 })();
