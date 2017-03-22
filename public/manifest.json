@@ -2,7 +2,7 @@
 	"name": "Chiang Mai AQI",
 	"short_name": "CMAQI",
 	"start_url": "./?utm_source=web_app_manifest",
-	"display": "standalone",
+	"display": "fullscreen",
 	"orientation": "portrait",
 	"background_color": "#ffffff",
 	"theme_color": "#000000",
