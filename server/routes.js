@@ -4,6 +4,13 @@ const router = express.Router();
 const config = require('./config');
 const moment = require('moment');
 
+const winston = require('winston');
+winston.level = 'debug';
+winston.add(winston.transports.File, {
+	filename: './server/data.log'
+});
+winston.remove(winston.transports.Console);
+
 router.get('/', getAqiData);
 module.exports = router;
 
@@ -17,12 +24,14 @@ function getAqiData(req, res) {
 		})
 		.then(json => {
 			const updatedTime = moment(`${json.data.time.s}${json.data.time.tz}`).fromNow();
-			res.json({
+			const data = {
 				aqi: json.data.aqi,
 				level: getAqiLevel(json.data.aqi),
 				cityName: json.data.city.name,
 				updatedAt: updatedTime
-			});
+			};
+			winston.log('debug', 'api data', data);
+			res.json(data);
 		});
 }
 
