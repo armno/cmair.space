@@ -27,7 +27,7 @@ function getAqiData(req, res) {
 			json: true
 		})
 		.then(json => {
-			const updatedTime = moment(`${json.data.time.s}${json.data.time.tz}`).fromNow();
+			const updatedTime = moment(`${json.data.time.s}${json.data.time.tz}`).format('h:mmA, MMMM Do, YYYY');
 			const data = {
 				aqi: json.data.aqi,
 				level: getAqiLevel(json.data.aqi),
