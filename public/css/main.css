@@ -12,7 +12,6 @@ a {
 	border-bottom: 1px dotted;
 	text-decoration: none;
 	color: currentColor;
-	/*font-weight: 700;*/
 }
 
 .container {
@@ -98,7 +97,8 @@ h2 {
 
 .update-time,
 .attribution,
-.github-link {
+.github-link,
+.offline-message {
 	font-size: 0.75rem;
 }
 
@@ -114,4 +114,15 @@ h2 {
 	top: 1rem;
 	right: 1rem;
 	opacity: 0.2;
+}
+
+.offline-message {
+	position: absolute;
+	top: 6rem;
+	opacity: 0;
+	transition: opacity 0.5s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.offline-message.offline {
+	opacity: 1;
 }

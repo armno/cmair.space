@@ -82,4 +82,19 @@
 			$('#container').classList.add('container--inverted');
 		}
 	}
+
+	window.addEventListener('load', () => {
+		const $message = $('#offline-message');
+		function updateOnlinStatus() {
+			if (navigator.onLine) {
+				$message.classList.remove('offline');
+			} else {
+				$message.classList.add('offline');
+			}
+		}
+
+		window.addEventListener('online', updateOnlinStatus);
+		window.addEventListener('offline', updateOnlinStatus);
+	});
+
 })();
