@@ -92,6 +92,7 @@ h2 {
 	margin-top: 5rem;
 	font-size: 1.2rem;
 	font-weight: 700;
+	text-align: center;
 }
 
 .update-time,
@@ -102,4 +103,6 @@ h2 {
 .attribution {
 	margin-top: 1rem;
 	opacity: 0.8;
+	position: absolute;
+	bottom: 2rem;
 }

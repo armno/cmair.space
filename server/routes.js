@@ -16,7 +16,11 @@ module.exports = router;
 
 function getAqiData(req, res) {
 	const token = config.token;
-	const url = `https://api.waqi.info/feed/@6817/?token=${token}`;
+	// @6817 - city hall
+	// @1822 - yupparaj
+	// @9471 - chiang mai gaia station 04
+	const station = '@6817';
+	const url = `https://api.waqi.info/feed/${station}/?token=${token}`;
 
 	rp({
 			uri: url,
