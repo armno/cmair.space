@@ -9,9 +9,10 @@ body {
 }
 
 a {
-	border-bottom: 1px solid;
+	border-bottom: 1px dotted;
 	text-decoration: none;
 	color: currentColor;
+	/*font-weight: 700;*/
 }
 
 .container {
@@ -96,7 +97,8 @@ h2 {
 }
 
 .update-time,
-.attribution {
+.attribution,
+.github-link {
 	font-size: 0.75rem;
 }
 
@@ -105,4 +107,11 @@ h2 {
 	opacity: 0.8;
 	position: absolute;
 	bottom: 2rem;
+}
+
+.github-link {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	opacity: 0.2;
 }
