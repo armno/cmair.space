@@ -17,13 +17,13 @@ module.exports = router;
 function getAqiData(req, res) {
 	const token = config.token;
 
-	res.json({
-		aqi: 168,
-		level: 'UNHEALTHY',
-		cityName: 'City Hall, Chiangmai',
-		updatedAt: '8:00PM, March 23rd, 2017'
-	});
-	return;
+	// res.json({
+	// 	aqi: 168,
+	// 	level: 'UNHEALTHY',
+	// 	cityName: 'City Hall, Chiangmai',
+	// 	updatedAt: '8:00PM, March 23rd, 2017'
+	// });
+	// return;
 
 	// @6817 - city hall
 	// @1822 - yupparaj

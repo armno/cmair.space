@@ -85,11 +85,16 @@
 
 	window.addEventListener('load', () => {
 		const $message = $('#offline-message');
+		const $container = $('#container');
+
 		function updateOnlinStatus() {
+			console.log($container);
 			if (navigator.onLine) {
 				$message.classList.remove('offline');
+				$container.classList.remove('offline');
 			} else {
 				$message.classList.add('offline');
+				$container.classList.add('offline');
 			}
 		}
 
