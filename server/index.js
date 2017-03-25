@@ -23,7 +23,7 @@ app.use(webhookHandler);
 webhookHandler.on('push', (repo, data) => {
   // run git pull
   exec(
-    'cd /var/www/html/a.armno.xyz && git pull origin master && yarn',
+    'cd /var/www/html/a.armno.xyz && git pull origin master && yarn && pm2 restart a',
     (error, stdout, stderror) => {
       if (error) {
         console.error(error);
