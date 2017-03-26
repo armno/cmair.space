@@ -1,5 +1,5 @@
-const cacheName = 'cm-aqi-12';
-const dataCacheName = 'cm-aqi-data-7';
+const cacheName = 'cm-aqi-13';
+const dataCacheName = 'cm-aqi-data-8';
 const filesToCache = [
 	'/',
 	'/index.html',

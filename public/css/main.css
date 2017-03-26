@@ -106,14 +106,14 @@ h2 {
 	margin-top: 1rem;
 	opacity: 0.8;
 	position: absolute;
-	bottom: 4rem;
+	bottom: 2rem;
 	left: 50%;
 	transform: translateX(-50%);
 }
 
 .github-link {
 	position: absolute;
-	top: 2rem;
+	top: 1rem;
 	right: 1rem;
 	opacity: 0.2;
 }
