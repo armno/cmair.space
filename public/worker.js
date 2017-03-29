@@ -1,6 +1,6 @@
 const cacheName = 'cm-aqi-13';
 const dataCacheName = 'cm-aqi-data-8';
-const filesToCache = [
+const appShell = [
 	'/',
 	'/index.html',
 	'/app-icon-192.png',
@@ -8,21 +8,24 @@ const filesToCache = [
 	'/js/main.js'
 ];
 
-self.addEventListener('install', function(e) {
+self.addEventListener('install', (e) => {
   console.log('[ServiceWorker] Install');
+
+  // caching appshell
   e.waitUntil(
-    caches.open(cacheName).then(function(cache) {
+		caches.open(cacheName)
+			.then((cache) => {
       console.log('[ServiceWorker] Caching app shell');
-      return cache.addAll(filesToCache);
+      return cache.addAll(appShell);
     })
   );
 });
 
-self.addEventListener('activate', function(e) {
+self.addEventListener('activate', (e) => {
   console.log('[ServiceWorker] Activate');
   e.waitUntil(
-    caches.keys().then(function(keyList) {
-      return Promise.all(keyList.map(function(key) {
+    caches.keys().then((keyList) => {
+      return Promise.all(keyList.map((key) => {
         if (key !== cacheName && key !== dataCacheName) {
           console.log('[ServiceWorker] Removing old cache', key);
           return caches.delete(key);
@@ -33,23 +36,25 @@ self.addEventListener('activate', function(e) {
   return self.clients.claim();
 });
 
-self.addEventListener('fetch', function(e) {
+self.addEventListener('fetch', (e) => {
   console.log('[ServiceWorker] Fetch', e.request.url);
 	const dataUrl = '/api';
 	if (e.request.url.indexOf(dataUrl) > -1) {
+		console.log('[ServiceWorker] Returning cached API data');
 		e.respondWith(
-			caches.open(dataCacheName).then(function (cache) {
-				return fetch(e.request).then(function (response) {
+			caches.open(dataCacheName).then((cache) => {
+				return fetch(e.request).then((response) => {
 					cache.put(e.request.url, response.clone());
 					return response;
 				});
 			})
-		)
+		);
 	} else {
+		console.log('[ServiceWorker] Requesting ...');
 		e.respondWith(
 			caches.match(e.request, {
       	ignoreSearch: true
-    	}).then(function(response) {
+    	}).then((response) => {
 				return response || fetch(e.request);
 			})
 		);
