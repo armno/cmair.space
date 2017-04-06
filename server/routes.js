@@ -17,14 +17,6 @@ module.exports = router;
 function getAqiData(req, res) {
 	const token = config.token;
 
-	// res.json({
-	// 	aqi: 168,
-	// 	level: 'UNHEALTHY',
-	// 	cityName: 'City Hall, Chiangmai',
-	// 	updatedAt: '8:00PM, March 23rd, 2017'
-	// });
-	// return;
-
 	// @6817 - city hall
 	// @1822 - yupparaj
 	// @9471 - chiang mai gaia station 04
@@ -40,36 +32,10 @@ function getAqiData(req, res) {
 				.format('h:mmA, MMMM Do, YYYY');
 			const data = {
 				aqi: json.data.aqi,
-				level: getAqiLevel(json.data.aqi),
 				cityName: json.data.city.name,
 				updatedAt: updatedTime
 			};
 			winston.log('debug', 'api data', data);
 			res.json(data);
 		});
-}
-
-
-function getAqiLevel(index) {
-	if (index >= 300) {
-		return 'HAZARDOUS';
-	}
-
-	if (index >= 201) {
-		return 'VERY-UNHEALTHY';
-	}
-
-	if (index >= 151) {
-		return 'UNHEALTHY';
-	}
-
-	if (index >= 101) {
-		return 'UNHEALTHY-SENSITIVE';
-	}
-
-	if (index >= 51) {
-		return 'MODERATE';
-	}
-
-	return 'GOOD';
 }

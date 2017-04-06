@@ -19,9 +19,11 @@
 		caches.match(url).then(response => {
 			if (response) {
 				response.json().then(json => {
-					updateUIValues(json.aqi, json.level, json.cityName, json.updatedAt);
-					updateTextValue(json.level);
-					setPageTitle(json.level);
+					const level = getAqiLevel(json.aqi);
+					updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
+					updateTextValue(level);
+					updateContainerClass(level);
+					setPageTitle(level);
 				});
 			}
 		});
@@ -31,10 +33,11 @@
 	fetch(url)
 		.then(response => response.json())
 		.then(json => {
-			updateUIValues(json.aqi, json.level, json.cityName, json.updatedAt);
-			updateTextValue(json.level);
-			updateContainerClass(json.level);
-			setPageTitle(json.level);
+			const level = getAqiLevel(json.aqi);
+			updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
+			updateTextValue(level);
+			updateContainerClass(level);
+			setPageTitle(level);
 		});
 
 	function $(selector) {
@@ -47,8 +50,9 @@
 		$('#updated-at').innerText = updatedAt || '';
 
 		if (level) {
-			document.querySelector('#container')
-				.classList.add(`container--${level}`);
+			const $container = $('#container');
+			$container.className = 'container';
+			$container.classList.add(`container--${level}`);
 		}
 
 	}
@@ -78,9 +82,37 @@
 	}
 
 	function updateContainerClass(level) {
+		const $container = ('#container');
+		const invertClass = 'container--inverted';
 		if (level === 'MODERATE' || level === 'UNHEALTHY-SENSITIVE') {
-			$('#container').classList.add('container--inverted');
+			$container.classList.add(invertClass);
+		} else {
+			$container.classList.remove(invertClass);
 		}
+	}
+
+	function getAqiLevel(index) {
+		if (index >= 300) {
+			return 'HAZARDOUS';
+		}
+
+		if (index >= 201) {
+			return 'VERY-UNHEALTHY';
+		}
+
+		if (index >= 151) {
+			return 'UNHEALTHY';
+		}
+
+		if (index >= 101) {
+			return 'UNHEALTHY-SENSITIVE';
+		}
+
+		if (index >= 51) {
+			return 'MODERATE';
+		}
+
+		return 'GOOD';
 	}
 
 	window.addEventListener('load', () => {
