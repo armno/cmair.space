@@ -82,7 +82,7 @@
 	}
 
 	function updateContainerClass(level) {
-		const $container = ('#container');
+		const $container = $('#container');
 		const invertClass = 'container--inverted';
 		if (level === 'MODERATE' || level === 'UNHEALTHY-SENSITIVE') {
 			$container.classList.add(invertClass);
