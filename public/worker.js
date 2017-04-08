@@ -1,4 +1,4 @@
-const cacheName = 'cm-aqi-14';
+const cacheName = 'cm-aqi-15';
 const dataCacheName = 'cm-aqi-data-9';
 const appShell = [
 	'/',
