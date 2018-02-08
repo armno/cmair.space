@@ -1,11 +1,11 @@
-# a
+# cmair.space
 
-A thing where I can see Chiang Mai's AQI. WIP.
+Displaying Chiang Mai's AQI using data from [aqicn.org](http://aqicn.org)
 
 ## set up
 
 ```sh
-$ yarn
+$ npm install
 ```
 
 create `server/config.js` file with aqicn.org API token. `gh` is the webhook secret key (i use webhook to auto-deploy).
@@ -21,7 +21,7 @@ module.exports = config;
 start local server with `nodemon`
 
 ```sh
-$ yarn start
+$ npm start
 ```
 
 open `http://localhost:4300`
