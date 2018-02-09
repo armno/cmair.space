@@ -61,11 +61,17 @@
 	}
 
 	function updateUIValues(aqi, level, cityName, updatedAt) {
-		$('#aqi-value').innerText = aqi || 0;
-		// $('#location').innerText = cityName || '';
+		const $value = $('#aqi-value');
+		if (aqi && aqi !== -1) {
+			$value.innerText = aqi
+		} else {
+			$value.innerText = '-';
+		}
+
+		// $('#aqi-value').innerText = aqi || 0;
 		$('#updated-at').innerText = updatedAt || '';
 
-		if (level) {
+		if (level && level !== 'N/A') {
 			const $container = $('#container');
 			$container.className = 'container';
 			$container.classList.add(`container--${level}`);
@@ -79,9 +85,16 @@
 		}
 
 		const $textElement = $('#aqi-text-value');
+		const $extraText = $('#aqi-text-extra');
+		if (level === 'N/A') {
+			$textElement.innerText = 'N/A';
+			$extraText.innerText = '';
+			return;
+		}
+
 		if (level === 'UNHEALTHY-SENSITIVE') {
 			$textElement.innerText = 'Unhealthy';
-			$('#aqi-text-extra').innerText = 'for Sensitive Group';
+			$extraText.innerText = 'for Sensitive Group';
 			return;
 		}
 
@@ -108,6 +121,12 @@
 	}
 
 	function getAqiLevel(index) {
+
+		if (index === -1) {
+			// error
+			return 'N/A';
+		}
+
 		if (index >= 300) {
 			return 'HAZARDOUS';
 		}

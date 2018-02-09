@@ -33,7 +33,7 @@ function getAqiData(req, res) {
 		.then(json => {
 			if (json.data.aqi === '-') {
 				res.json({
-					aqi: '-',
+					aqi: -1,
 					cityName: json.data.city.name,
 					updatedAt: 'N/A'
 				});
