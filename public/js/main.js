@@ -29,27 +29,49 @@
 		});
 	}
 
+	fetchData(url);
 
-	fetch(url)
-		.then(response => response.json())
-		.then(json => {
-			const level = getAqiLevel(json.aqi);
-			updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
-			updateTextValue(level);
-			updateContainerClass(level);
-			setPageTitle(level);
+	document.querySelector('#available-locations')
+		.addEventListener('change', function() {
+			if (!this.value) {
+				return;
+			}
+
+			fetchData(url, this.value);
 		});
+
+	function fetchData(url, stationId) {
+		if (stationId) {
+			url = url + '/' + stationId;
+		}
+
+		fetch(url)
+			.then(response => response.json())
+			.then(json => {
+				const level = getAqiLevel(json.aqi);
+				updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
+				updateTextValue(level);
+				updateContainerClass(level);
+				setPageTitle(level);
+			});
+	}
 
 	function $(selector) {
 		return document.querySelector(selector);
 	}
 
 	function updateUIValues(aqi, level, cityName, updatedAt) {
-		$('#aqi-value').innerText = aqi || 0;
-		$('#location').innerText = cityName || '';
+		const $value = $('#aqi-value');
+		if (aqi && aqi !== -1) {
+			$value.innerText = aqi
+		} else {
+			$value.innerText = '-';
+		}
+
+		// $('#aqi-value').innerText = aqi || 0;
 		$('#updated-at').innerText = updatedAt || '';
 
-		if (level) {
+		if (level && level !== 'N/A') {
 			const $container = $('#container');
 			$container.className = 'container';
 			$container.classList.add(`container--${level}`);
@@ -63,9 +85,16 @@
 		}
 
 		const $textElement = $('#aqi-text-value');
+		const $extraText = $('#aqi-text-extra');
+		if (level === 'N/A') {
+			$textElement.innerText = 'N/A';
+			$extraText.innerText = '';
+			return;
+		}
+
 		if (level === 'UNHEALTHY-SENSITIVE') {
 			$textElement.innerText = 'Unhealthy';
-			$('#aqi-text-extra').innerText = 'for Sensitive Group';
+			$extraText.innerText = 'for Sensitive Group';
 			return;
 		}
 
@@ -92,6 +121,12 @@
 	}
 
 	function getAqiLevel(index) {
+
+		if (index === -1) {
+			// error
+			return 'N/A';
+		}
+
 		if (index >= 300) {
 			return 'HAZARDOUS';
 		}
@@ -120,7 +155,6 @@
 		const $container = $('#container');
 
 		function updateOnlinStatus() {
-			console.log($container);
 			if (navigator.onLine) {
 				$message.classList.remove('offline');
 				$container.classList.remove('offline');

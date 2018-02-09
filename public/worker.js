@@ -1,5 +1,5 @@
-const cacheName = 'cm-aqi-15';
-const dataCacheName = 'cm-aqi-data-9';
+const cacheName = 'cm-aqi-16';
+const dataCacheName = 'cm-aqi-data-10';
 const appShell = [
 	'/',
 	'/index.html',

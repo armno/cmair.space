@@ -11,16 +11,19 @@ winston.add(winston.transports.File, {
 });
 winston.remove(winston.transports.Console);
 
-router.get('/', getAqiData);
+router.get('/:station?', getAqiData);
 module.exports = router;
 
 function getAqiData(req, res) {
 	const token = config.token;
 
-	// @6817 - city hall
-	// @1822 - yupparaj
-	// @9471 - chiang mai gaia station 04
-	const station = '@6817';
+	let station;
+	if (req.params.station) {
+		station = req.params.station;
+	} else {
+	 	station = '@6817'; // chiang mai, city hall
+	}
+
 	const url = `https://api.waqi.info/feed/${station}/?token=${token}`;
 
 	rp({
@@ -28,6 +31,15 @@ function getAqiData(req, res) {
 			json: true
 		})
 		.then(json => {
+			if (json.data.aqi === '-') {
+				res.json({
+					aqi: -1,
+					cityName: json.data.city.name,
+					updatedAt: 'N/A'
+				});
+				return;
+			}
+
 			const updatedTime = moment.tz(`${json.data.time.s}${json.data.time.tz}`, 'Asia/Bangkok')
 				.format('h:mmA, MMMM Do, YYYY');
 			const data = {
