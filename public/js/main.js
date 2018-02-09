@@ -29,16 +29,32 @@
 		});
 	}
 
+	fetchData(url);
 
-	fetch(url)
-		.then(response => response.json())
-		.then(json => {
-			const level = getAqiLevel(json.aqi);
-			updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
-			updateTextValue(level);
-			updateContainerClass(level);
-			setPageTitle(level);
+	document.querySelector('#available-locations')
+		.addEventListener('change', function() {
+			if (!this.value) {
+				return;
+			}
+
+			fetchData(url, this.value);
 		});
+
+	function fetchData(url, stationId) {
+		if (stationId) {
+			url = url + '/' + stationId;
+		}
+
+		fetch(url)
+			.then(response => response.json())
+			.then(json => {
+				const level = getAqiLevel(json.aqi);
+				updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
+				updateTextValue(level);
+				updateContainerClass(level);
+				setPageTitle(level);
+			});
+	}
 
 	function $(selector) {
 		return document.querySelector(selector);
@@ -46,7 +62,7 @@
 
 	function updateUIValues(aqi, level, cityName, updatedAt) {
 		$('#aqi-value').innerText = aqi || 0;
-		$('#location').innerText = cityName || '';
+		// $('#location').innerText = cityName || '';
 		$('#updated-at').innerText = updatedAt || '';
 
 		if (level) {
@@ -120,7 +136,6 @@
 		const $container = $('#container');
 
 		function updateOnlinStatus() {
-			console.log($container);
 			if (navigator.onLine) {
 				$message.classList.remove('offline');
 				$container.classList.remove('offline');
