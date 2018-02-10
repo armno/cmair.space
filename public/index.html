@@ -8,21 +8,8 @@
 	<title>Chiang Mai AQI</title>
 
 	<link rel="css" href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,700">
-	<link rel="preload" href="../css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-	<noscript>
-		<link rel="stylesheet" href="../css/main.css">
-	</noscript>
-	<script>
-		/*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
-		(function(w){"use strict";if(!w.loadCSS){w.loadCSS=function(){}}
-var rp=loadCSS.relpreload={};rp.support=(function(){var ret;try{ret=w.document.createElement("link").relList.supports("preload")}catch(e){ret=!1}
-return function(){return ret}})();rp.bindMediaToggle=function(link){var finalMedia=link.media||"all";function enableStylesheet(){link.media=finalMedia}
-if(link.addEventListener){link.addEventListener("load",enableStylesheet)}else if(link.attachEvent){link.attachEvent("onload",enableStylesheet)}
-setTimeout(function(){link.rel="stylesheet";link.media="only x"});setTimeout(enableStylesheet,3000)};rp.poly=function(){if(rp.support()){return}
-var links=w.document.getElementsByTagName("link");for(var i=0;i<links.length;i++){var link=links[i];if(link.rel==="preload"&&link.getAttribute("as")==="style"&&!link.getAttribute("data-loadcss")){link.setAttribute("data-loadcss",!0);rp.bindMediaToggle(link)}}};if(!rp.support()){rp.poly();var run=w.setInterval(rp.poly,500);if(w.addEventListener){w.addEventListener("load",function(){rp.poly();w.clearInterval(run)})}else if(w.attachEvent){w.attachEvent("onload",function(){rp.poly();w.clearInterval(run)})}}
-if(typeof exports!=="undefined"){exports.loadCSS=loadCSS}
-else{w.loadCSS=loadCSS}}(typeof global!=="undefined"?global:this))
-	</script>
+	<style>
+	body,html{margin:0;padding:0;font-family:"Roboto Mono",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;font-weight:300;line-height:1.5}a{border-bottom:1px dotted;text-decoration:none;color:currentColor}.container{color:#fff;background-color:#9C9C9C;width:100%;height:100%;position:absolute;top:0;right:0;left:0;bottom:0;display:flex;justify-content:center;align-items:center;flex-direction:column;transition:background-color 1.2s cubic-bezier(.075,.82,.165,1)}.container--inverted{color:#4a4a4a}h1,h2{margin:0;font-weight:300}.container--GOOD{background-color:#6EC96E}.container--MODERATE{background-color:#DFDC58}.container--UNHEALTHY-SENSITIVE{background-color:#FF9745}.container--UNHEALTHY{background-color:#CB2D2D}.container--VERY-UNHEALTHY{background-color:#6B003F}.container--HAZARDOUS{background-color:#4F0101}.aqi-value{font-size:7.5rem;font-weight:700;line-height:1}.aqi-text-value{font-size:2.25rem;text-align:center;line-height:1.2;margin-top:1rem}.container--VERY-UNHEALTHY .aqi-text-value{font-size:2rem}.aqi-text-value__extra{font-size:1rem}.location{margin-top:5rem;margin-bottom:1rem;font-size:1.5rem;font-weight:700;text-align:center;background-color:transparent;border:0;color:#4a4a4a;line-height:1.5;max-width:65vw}.attribution,.github-link,.offline-message,.update-time{font-size:.75rem}.attribution{margin-top:1rem;opacity:.8;position:absolute;bottom:2rem;left:50%;transform:translateX(-50%)}.github-link{position:absolute;top:1rem;right:1rem}.offline-message{position:absolute;top:6rem;opacity:0;transition:opacity .5s cubic-bezier(0,0,.2,1)}.offline-message.offline{opacity:1}</style>
 
 	<link rel="icon" type="image/png" href="/app-icon-48.png">
 	<link rel="icon" sizes="192x192" href="/app-icon-192.png">
