@@ -99,10 +99,10 @@ h2 {
 	border: 0;
 	color: #fff;
 	line-height: 1.5;
-	max-width: 65vw;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
+	text-align-last: center;
 }
 
 .attribution,
