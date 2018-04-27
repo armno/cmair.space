@@ -31,15 +31,6 @@
 
 	fetchData(url);
 
-	document.querySelector('#available-locations')
-		.addEventListener('change', function() {
-			if (!this.value) {
-				return;
-			}
-
-			fetchData(url, this.value);
-		});
-
 	function fetchData(url, stationId) {
 		if (stationId) {
 			url = url + '/' + stationId;

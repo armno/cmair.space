@@ -7,9 +7,8 @@
 	<link rel="manifest" href="/manifest.json">
 	<title>Chiang Mai AQI</title>
 
-	<link rel="css" href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,700">
-	<style>
-	body,html{margin:0;padding:0;font-family:"Roboto Mono",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";font-size:16px;font-weight:300;line-height:1.5}a{border-bottom:1px dotted;text-decoration:none;color:currentColor}.container{color:#fff;background-color:#9C9C9C;width:100%;height:100%;position:absolute;top:0;right:0;left:0;bottom:0;display:flex;justify-content:center;align-items:center;flex-direction:column;transition:background-color 1.2s cubic-bezier(.075,.82,.165,1)}.container--inverted{color:#4a4a4a}h1,h2{margin:0;font-weight:300}.container--GOOD{background-color:#6EC96E}.container--MODERATE{background-color:#DFDC58}.container--UNHEALTHY-SENSITIVE{background-color:#FF9745}.container--UNHEALTHY{background-color:#CB2D2D}.container--VERY-UNHEALTHY{background-color:#6B003F}.container--HAZARDOUS{background-color:#4F0101}.aqi-value{font-size:7.5rem;font-weight:700;line-height:1}.aqi-text-value{font-size:2.25rem;text-align:center;line-height:1.2;margin-top:1rem}.container--VERY-UNHEALTHY .aqi-text-value{font-size:2rem}.aqi-text-value__extra{font-size:1rem}.location{-webkit-appearance:none;appearance:none;margin-top:5rem;margin-bottom:1rem;font-size:1.5rem;font-weight:700;text-align:center;background-color:transparent;border:0;color:#fff;line-height:1.5;text-align-last:center}.attribution,.github-link,.offline-message,.update-time{font-size:.75rem}.attribution{margin-top:1rem;opacity:.8;position:absolute;bottom:2rem;left:50%;transform:translateX(-50%)}.github-link{position:absolute;top:1rem;right:1rem}.offline-message{position:absolute;top:6rem;opacity:0;transition:opacity .5s cubic-bezier(0,0,.2,1)}.offline-message.offline{opacity:1}</style>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,700">
+	<link rel="stylesheet" href="/css/main.css">
 
 	<link rel="icon" type="image/png" href="/app-icon-48.png">
 	<link rel="icon" sizes="192x192" href="/app-icon-192.png">
@@ -33,12 +32,9 @@
 			</div>
 		</h2>
 
-		<select class="location" name="location" id="available-locations">
-			<option value="@6817" selected>City Hall, Chiang Mai</option>
-			<option value="@1822">Yupparaj Witayalai School</option>
-			<option value="@9471">Chiangmai - Gaia Station 04</option>
-			<option value="@9474">Mae Rim - Prem</option>
-		</select>
+		<div class="location">
+			City Hall, Chiang Mai
+		</div>
 
 		<div class="update-time">
 			Updated at
