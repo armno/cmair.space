@@ -19,7 +19,7 @@
 		"moment-timezone": "^0.5.25",
 		"request": "^2.88.0",
 		"request-promise": "^4.2.4",
-		"winston": "^2.4.4"
+		"winston": "^3.2.1"
 	},
 	"prettier": {
 		"singleQuote": true
