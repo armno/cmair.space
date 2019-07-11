@@ -16,7 +16,7 @@
 		"express": "^4.17.1",
 		"express-github-webhook": "^1.0.5",
 		"moment": "^2.24.0",
-		"moment-timezone": "^0.5.25",
+		"moment-timezone": "^0.5.26",
 		"request": "^2.88.0",
 		"request-promise": "^4.2.4",
 		"winston": "^3.2.1"
