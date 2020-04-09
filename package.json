@@ -9,7 +9,7 @@
 	"author": "armno",
 	"license": "MIT",
 	"devDependencies": {
-		"nodemon": "^1.19.4"
+		"nodemon": "^2.0.3"
 	},
 	"dependencies": {
 		"body-parser": "^1.19.0",
