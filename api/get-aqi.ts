@@ -2,7 +2,7 @@ import { NowRequest, NowResponse } from '@now/node';
 import fetch from 'isomorphic-unfetch';
 
 export default async (req: NowRequest, res: NowResponse) => {
-	const station = req.body.station || '@6817';
+	const station = req.query.station || '@6817';
 
 	try {
 		const TOKEN = process.env.TOKEN;
