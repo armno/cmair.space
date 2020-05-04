@@ -14,7 +14,7 @@ export default async (req: NowRequest, res: NowResponse) => {
 
 		const body = await response.json();
 
-		return res.status(200).json(body);
+		return res.status(200).json(body.data);
 	} catch (error) {
 		return res.status(500).json({
 			error: error.message || error.toString(),

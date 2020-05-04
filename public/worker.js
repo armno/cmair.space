@@ -1,4 +1,4 @@
-const BUILD_NUMBER = '26';
+const BUILD_NUMBER = '27';
 const cacheName = `cm-aqi-${BUILD_NUMBER}`;
 const dataCacheName = `cm-aqi-data-${BUILD_NUMBER}`;
 const appShell = [
@@ -6,17 +6,17 @@ const appShell = [
 	'/index.html',
 	'/app-icon-192.png',
 	'/css/main.css',
-	'/js/main.js'
+	'/js/main.js',
 ];
 
-self.addEventListener('install', e => {
+self.addEventListener('install', (e) => {
 	console.log('[ServiceWorker] Install');
 
 	// caching appshell
 	e.waitUntil(
 		caches
 			.open(cacheName)
-			.then(cache => {
+			.then((cache) => {
 				console.log('[ServiceWorker] Caching app shell');
 				return cache.addAll(appShell);
 			})
@@ -26,12 +26,12 @@ self.addEventListener('install', e => {
 	);
 });
 
-self.addEventListener('activate', e => {
+self.addEventListener('activate', (e) => {
 	console.log('[ServiceWorker] Activate');
 	e.waitUntil(
-		caches.keys().then(keyList => {
+		caches.keys().then((keyList) => {
 			return Promise.all(
-				keyList.map(key => {
+				keyList.map((key) => {
 					if (key !== cacheName && key !== dataCacheName) {
 						console.log('[ServiceWorker] Removing old cache', key);
 						return caches.delete(key);
@@ -59,12 +59,13 @@ self.addEventListener('fetch', (e) => {
 	} else {
 		console.log('[ServiceWorker] Requesting ...');
 		e.respondWith(
-			caches.match(e.request, {
-				ignoreSearch: true
-			}).then((response) => {
-				return response || fetch(e.request);
-			})
+			caches
+				.match(e.request, {
+					ignoreSearch: true,
+				})
+				.then((response) => {
+					return response || fetch(e.request);
+				})
 		);
 	}
-
 });

@@ -1,24 +1,25 @@
 (function () {
 	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('/worker.js')
-			.then(() => {
+		navigator.serviceWorker.register('/worker.js').then(
+			() => {
 				console.log('ServiceWorker is registered.');
-			}, () => {
+			},
+			() => {
 				console.warn('Failed to register ServiceWorker.');
-			});
+			}
+		);
 	} else {
 		console.warn('ServiceWorker is not supported.');
 	}
 })();
 
 (function () {
-
-	const url = `/api`;
+	const url = `/api/get-aqi`;
 
 	if ('caches' in window) {
-		caches.match(url).then(response => {
+		caches.match(url).then((response) => {
 			if (response) {
-				response.json().then(json => {
+				response.json().then((json) => {
 					const level = getAqiLevel(json.aqi);
 					updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
 					updateTextValue(level);
@@ -37,8 +38,8 @@
 		}
 
 		fetch(url)
-			.then(response => response.json())
-			.then(json => {
+			.then((response) => response.json())
+			.then((json) => {
 				const level = getAqiLevel(json.aqi);
 				updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
 				updateTextValue(level);
@@ -54,7 +55,7 @@
 	function updateUIValues(aqi, level, cityName, updatedAt) {
 		const $value = $('#aqi-value');
 		if (aqi && aqi !== -1) {
-			$value.innerText = aqi
+			$value.innerText = aqi;
 		} else {
 			$value.innerText = '-';
 		}
@@ -67,7 +68,6 @@
 			$container.className = 'container';
 			$container.classList.add(`container--${level}`);
 		}
-
 	}
 
 	function updateTextValue(level) {
@@ -112,7 +112,6 @@
 	}
 
 	function getAqiLevel(index) {
-
 		if (index === -1) {
 			// error
 			return 'N/A';
@@ -158,5 +157,4 @@
 		window.addEventListener('online', updateOnlinStatus);
 		window.addEventListener('offline', updateOnlinStatus);
 	});
-
 })();
