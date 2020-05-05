@@ -1,162 +1,159 @@
 (function () {
-	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('/worker.js')
-			.then(() => {
-				console.log('ServiceWorker is registered.');
-			}, () => {
-				console.warn('Failed to register ServiceWorker.');
-			});
-	} else {
-		console.warn('ServiceWorker is not supported.');
-	}
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/worker.js').then(
+      () => {
+        console.log('ServiceWorker is registered.');
+      },
+      () => {
+        console.warn('Failed to register ServiceWorker.');
+      }
+    );
+  } else {
+    console.warn('ServiceWorker is not supported.');
+  }
 })();
 
 (function () {
+  const url = `/api/get-aqi`;
 
-	const url = `/api`;
+  if ('caches' in window) {
+    caches.match(url).then((response) => {
+      if (response) {
+        response.json().then((json) => {
+          const level = getAqiLevel(json.aqi);
+          updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
+          updateTextValue(level);
+          updateContainerClass(level);
+          setPageTitle(level);
+        });
+      }
+    });
+  }
 
-	if ('caches' in window) {
-		caches.match(url).then(response => {
-			if (response) {
-				response.json().then(json => {
-					const level = getAqiLevel(json.aqi);
-					updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
-					updateTextValue(level);
-					updateContainerClass(level);
-					setPageTitle(level);
-				});
-			}
-		});
-	}
+  fetchData(url);
 
-	fetchData(url);
+  function fetchData(url, stationId) {
+    if (stationId) {
+      url = url + '/' + stationId;
+    }
 
-	function fetchData(url, stationId) {
-		if (stationId) {
-			url = url + '/' + stationId;
-		}
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => {
+        const level = getAqiLevel(json.aqi);
+        updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
+        updateTextValue(level);
+        updateContainerClass(level);
+        setPageTitle(level);
+      });
+  }
 
-		fetch(url)
-			.then(response => response.json())
-			.then(json => {
-				const level = getAqiLevel(json.aqi);
-				updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
-				updateTextValue(level);
-				updateContainerClass(level);
-				setPageTitle(level);
-			});
-	}
+  function $(selector) {
+    return document.querySelector(selector);
+  }
 
-	function $(selector) {
-		return document.querySelector(selector);
-	}
+  function updateUIValues(aqi, level, cityName, updatedAt) {
+    const $value = $('#aqi-value');
+    if (aqi && aqi !== -1) {
+      $value.innerText = aqi;
+    } else {
+      $value.innerText = '-';
+    }
 
-	function updateUIValues(aqi, level, cityName, updatedAt) {
-		const $value = $('#aqi-value');
-		if (aqi && aqi !== -1) {
-			$value.innerText = aqi
-		} else {
-			$value.innerText = '-';
-		}
+    $('#updated-at').innerText = new Date(updatedAt).toLocaleTimeString() || '';
 
-		// $('#aqi-value').innerText = aqi || 0;
-		$('#updated-at').innerText = updatedAt || '';
+    if (level && level !== 'N/A') {
+      const $container = $('#container');
+      $container.className = 'container';
+      $container.classList.add(`container--${level}`);
+    }
+  }
 
-		if (level && level !== 'N/A') {
-			const $container = $('#container');
-			$container.className = 'container';
-			$container.classList.add(`container--${level}`);
-		}
+  function updateTextValue(level) {
+    if (!level) {
+      return;
+    }
 
-	}
+    const $textElement = $('#aqi-text-value');
+    const $extraText = $('#aqi-text-extra');
+    if (level === 'N/A') {
+      $textElement.innerText = 'N/A';
+      $extraText.innerText = '';
+      return;
+    }
 
-	function updateTextValue(level) {
-		if (!level) {
-			return;
-		}
+    if (level === 'UNHEALTHY-SENSITIVE') {
+      $textElement.innerText = 'Unhealthy';
+      $extraText.innerText = 'for Sensitive Group';
+      return;
+    }
 
-		const $textElement = $('#aqi-text-value');
-		const $extraText = $('#aqi-text-extra');
-		if (level === 'N/A') {
-			$textElement.innerText = 'N/A';
-			$extraText.innerText = '';
-			return;
-		}
+    if (level === 'VERY-UNHEALTHY') {
+      $textElement.innerText = 'Very Unhealthy';
+      return;
+    }
 
-		if (level === 'UNHEALTHY-SENSITIVE') {
-			$textElement.innerText = 'Unhealthy';
-			$extraText.innerText = 'for Sensitive Group';
-			return;
-		}
+    $textElement.innerText = level.toLowerCase();
+  }
 
-		if (level === 'VERY-UNHEALTHY') {
-			$textElement.innerText = 'Very Unhealthy';
-			return;
-		}
+  function setPageTitle(title) {
+    document.title = `${title} - Chiang Mai AQI`;
+  }
 
-		$textElement.innerText = level.toLowerCase();
-	}
+  function updateContainerClass(level) {
+    const $container = $('#container');
+    const invertClass = 'container--inverted';
+    if (level === 'MODERATE' || level === 'UNHEALTHY-SENSITIVE') {
+      $container.classList.add(invertClass);
+    } else {
+      $container.classList.remove(invertClass);
+    }
+  }
 
-	function setPageTitle(title) {
-		document.title = `${title} - Chiang Mai AQI`;
-	}
+  function getAqiLevel(index) {
+    if (index === -1) {
+      // error
+      return 'N/A';
+    }
 
-	function updateContainerClass(level) {
-		const $container = $('#container');
-		const invertClass = 'container--inverted';
-		if (level === 'MODERATE' || level === 'UNHEALTHY-SENSITIVE') {
-			$container.classList.add(invertClass);
-		} else {
-			$container.classList.remove(invertClass);
-		}
-	}
+    if (index >= 300) {
+      return 'HAZARDOUS';
+    }
 
-	function getAqiLevel(index) {
+    if (index >= 201) {
+      return 'VERY-UNHEALTHY';
+    }
 
-		if (index === -1) {
-			// error
-			return 'N/A';
-		}
+    if (index >= 151) {
+      return 'UNHEALTHY';
+    }
 
-		if (index >= 300) {
-			return 'HAZARDOUS';
-		}
+    if (index >= 101) {
+      return 'UNHEALTHY-SENSITIVE';
+    }
 
-		if (index >= 201) {
-			return 'VERY-UNHEALTHY';
-		}
+    if (index >= 51) {
+      return 'MODERATE';
+    }
 
-		if (index >= 151) {
-			return 'UNHEALTHY';
-		}
+    return 'GOOD';
+  }
 
-		if (index >= 101) {
-			return 'UNHEALTHY-SENSITIVE';
-		}
+  window.addEventListener('load', () => {
+    const $message = $('#offline-message');
+    const $container = $('#container');
 
-		if (index >= 51) {
-			return 'MODERATE';
-		}
+    function updateOnlinStatus() {
+      if (navigator.onLine) {
+        $message.classList.remove('offline');
+        $container.classList.remove('offline');
+      } else {
+        $message.classList.add('offline');
+        $container.classList.add('offline');
+      }
+    }
 
-		return 'GOOD';
-	}
-
-	window.addEventListener('load', () => {
-		const $message = $('#offline-message');
-		const $container = $('#container');
-
-		function updateOnlinStatus() {
-			if (navigator.onLine) {
-				$message.classList.remove('offline');
-				$container.classList.remove('offline');
-			} else {
-				$message.classList.add('offline');
-				$container.classList.add('offline');
-			}
-		}
-
-		window.addEventListener('online', updateOnlinStatus);
-		window.addEventListener('offline', updateOnlinStatus);
-	});
-
+    window.addEventListener('online', updateOnlinStatus);
+    window.addEventListener('offline', updateOnlinStatus);
+  });
 })();

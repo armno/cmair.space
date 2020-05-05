@@ -13,3 +13,6 @@ server/config.js
 .vscode
 
 **/*.log
+
+.now
+.env
