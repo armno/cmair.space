@@ -60,8 +60,7 @@
 			$value.innerText = '-';
 		}
 
-		// $('#aqi-value').innerText = aqi || 0;
-		$('#updated-at').innerText = updatedAt || '';
+		$('#updated-at').innerText = new Date(updatedAt).toLocaleTimeString() || '';
 
 		if (level && level !== 'N/A') {
 			const $container = $('#container');

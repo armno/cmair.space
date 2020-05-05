@@ -24,7 +24,7 @@ export default async (req: NowRequest, res: NowResponse) => {
 		return res.status(200).json({
 			aqi: body.data.aqi,
 			cityName: body.data.city.name,
-			updatedAt: body.data.time.s,
+			updatedAt: `${body.data.time.s}${body.data.time.tz}`,
 		});
 	} catch (error) {
 		return res.status(500).json({

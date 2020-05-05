@@ -1,4 +1,4 @@
-const BUILD_NUMBER = '27';
+const BUILD_NUMBER = '28';
 const cacheName = `cm-aqi-${BUILD_NUMBER}`;
 const dataCacheName = `cm-aqi-data-${BUILD_NUMBER}`;
 const appShell = [
