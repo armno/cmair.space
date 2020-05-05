@@ -1,29 +1,27 @@
 {
-	"name": "cmair.space",
-	"description": "Display Chiang Mai's AQI",
-	"version": "1.1.0",
-	"scripts": {
-		"start": "now dev",
-		"now": "now"
-	},
-	"author": "armno",
-	"license": "MIT",
-	"devDependencies": {
-		"now": "^18.0.0"
-	},
-	"dependencies": {
-		"@now/node": "^1.5.1",
-		"body-parser": "^1.19.0",
-		"express": "^4.17.1",
-		"express-github-webhook": "^1.0.5",
-		"isomorphic-unfetch": "^3.0.0",
-		"moment": "^2.24.0",
-		"moment-timezone": "^0.5.28",
-		"request": "^2.88.2",
-		"request-promise": "^4.2.5",
-		"winston": "^3.2.1"
-	},
-	"prettier": {
-		"singleQuote": true
-	}
+  "name": "cmair.space",
+  "description": "Display Chiang Mai's AQI",
+  "version": "1.1.0",
+  "scripts": {
+    "start": "now dev",
+    "now": "now"
+  },
+  "author": "armno",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "now": "^18.0.0",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@now/node": "^1.5.1",
+    "isomorphic-unfetch": "^3.0.0"
+  },
+  "prettier": {
+    "singleQuote": true
+  }
 }
