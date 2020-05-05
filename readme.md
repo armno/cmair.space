@@ -1,27 +1,15 @@
 # cmair.space
 
-Displaying Chiang Mai's AQI using data from [aqicn.org](http://aqicn.org)
+Displaying Chiang Mai's AQI using data from [aqicn.org](http://aqicn.org).
+
+Built with static HTML and [Vercel Serverless functions](https://vercel.com/docs/v2/serverless-functions/introduction).
 
 ## set up
 
 ```sh
 $ npm install
+$ npm run now -- env pull # pull development .env file from vercel
+$ npm start # start dev server
 ```
 
-create `server/config.js` file with aqicn.org API token. `gh` is the webhook secret key (i use webhook to auto-deploy).
-
-```js
-const config = {
-  token: 'aqicn.org api token',
-  gh: 'github webhook secret'
-};
-module.exports = config;
-```
-
-start local server with `nodemon`
-
-```sh
-$ npm start
-```
-
-open `http://localhost:4300`
+open `http://localhost:3000`
