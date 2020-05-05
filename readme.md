@@ -3,6 +3,7 @@
 Displaying Chiang Mai's AQI using data from [aqicn.org](http://aqicn.org).
 
 Built with static HTML and [Vercel Serverless functions](https://vercel.com/docs/v2/serverless-functions/introduction).
+See `public/` and `api/` folders.
 
 ## set up
 
