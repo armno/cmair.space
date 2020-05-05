@@ -13,8 +13,19 @@ export default async (req: NowRequest, res: NowResponse) => {
 		});
 
 		const body = await response.json();
+		if (body.data.jaqi === '-') {
+			return res.json({
+				aqi: -1,
+				cityName: body.data.city.name,
+				updatedAt: 'N/A',
+			});
+		}
 
-		return res.status(200).json(body.data);
+		return res.status(200).json({
+			aqi: body.data.aqi,
+			cityName: body.data.city.name,
+			updatedAt: body.data.time.s,
+		});
 	} catch (error) {
 		return res.status(500).json({
 			error: error.message || error.toString(),

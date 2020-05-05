@@ -1,15 +1,15 @@
 {
 	"name": "cmair.space",
-	"description": "",
-	"version": "1.0.0",
-	"main": "gulpfile.js",
+	"description": "Display Chiang Mai's AQI",
+	"version": "1.1.0",
 	"scripts": {
-		"start": "nodemon server/index.js"
+		"start": "now dev",
+		"now": "now"
 	},
 	"author": "armno",
 	"license": "MIT",
 	"devDependencies": {
-		"nodemon": "^2.0.3"
+		"now": "^18.0.0"
 	},
 	"dependencies": {
 		"@now/node": "^1.5.1",
