@@ -16,3 +16,4 @@ server/config.js
 
 .now
 .env
+.vercel

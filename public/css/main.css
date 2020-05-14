@@ -114,8 +114,8 @@ h2 {
 	opacity: 0.8;
 	position: absolute;
 	bottom: 2rem;
-	left: 50%;
-	transform: translateX(-50%);
+	width: 100%;
+	text-align: center;
 }
 
 .github-link {
