@@ -8,9 +8,9 @@ See `public/` and `api/` folders.
 ## set up
 
 ```sh
-$ npm install
-$ npm run now -- env pull # pull development .env file from vercel
-$ npm start # start dev server
+$ npm install -g vercel
+$ vc env pull # pull development .env file from vercel
+$ vc dev
 ```
 
 open `http://localhost:3000`

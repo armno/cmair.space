@@ -23,7 +23,6 @@
           const level = getAqiLevel(json.aqi);
           updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
           updateTextValue(level);
-          updateContainerClass(level);
           setPageTitle(level);
         });
       }
@@ -43,7 +42,6 @@
         const level = getAqiLevel(json.aqi);
         updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
         updateTextValue(level);
-        updateContainerClass(level);
         setPageTitle(level);
       });
   }
@@ -98,16 +96,6 @@
 
   function setPageTitle(title) {
     document.title = `${title} - Chiang Mai AQI`;
-  }
-
-  function updateContainerClass(level) {
-    const $container = $('#container');
-    const invertClass = 'container--inverted';
-    if (level === 'MODERATE' || level === 'UNHEALTHY-SENSITIVE') {
-      $container.classList.add(invertClass);
-    } else {
-      $container.classList.remove(invertClass);
-    }
   }
 
   function getAqiLevel(index) {
