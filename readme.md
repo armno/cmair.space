@@ -1,6 +1,6 @@
-# cmair.space
+# [https://cmair.space](cmair.space)
 
-Displaying Chiang Mai's AQI using data from [aqicn.org](http://aqicn.org).
+[https://cmair.space](cmair.space) - Displays Chiang Mai's AQI using data from [aqicn.org](http://aqicn.org).
 
 Built with static HTML and [Vercel Serverless functions](https://vercel.com/docs/v2/serverless-functions/introduction).
 See `public/` and `api/` folders.
