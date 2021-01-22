@@ -1,4 +1,4 @@
-import { NowRequest, NowResponse } from '@now/node';
+import { NowRequest, NowResponse } from '@vercel/node';
 import fetch from 'isomorphic-unfetch';
 
 interface AQIData {
