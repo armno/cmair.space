@@ -28,7 +28,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     // replace default values with values from the API
     if (responseBody.data.aqi !== '-') {
       aqi = responseBody.data.aqi;
-      updatedAt = `${responseBody.data.time.s}${responseBody.data.time.tz}`;
+      updatedAt = `${responseBody.data.time.iso}`;
     }
 
     const body: AQIData = {
