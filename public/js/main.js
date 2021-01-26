@@ -22,7 +22,7 @@
         response.json().then((json) => {
           const level = getAqiLevel(json.aqi);
           updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
-          updateTextValue(level);
+          // updateTextValue(level);
           setPageTitle(level);
         });
       }
@@ -41,7 +41,7 @@
       .then((json) => {
         const level = getAqiLevel(json.aqi);
         updateUIValues(json.aqi, level, json.cityName, json.updatedAt);
-        updateTextValue(level);
+        // updateTextValue(level);
         setPageTitle(level);
       });
   }
@@ -58,7 +58,7 @@
       $value.innerText = '-';
     }
 
-    $('#updated-at').innerText = new Date(updatedAt).toLocaleTimeString() || '';
+    // $('#updated-at').innerText = new Date(updatedAt).toLocaleTimeString() || '';
 
     if (level && level !== 'N/A') {
       const $container = $('#container');
@@ -67,32 +67,32 @@
     }
   }
 
-  function updateTextValue(level) {
-    if (!level) {
-      return;
-    }
+  // function updateTextValue(level) {
+  //   if (!level) {
+  //     return;
+  //   }
 
-    const $textElement = $('#aqi-text-value');
-    const $extraText = $('#aqi-text-extra');
-    if (level === 'N/A') {
-      $textElement.innerText = 'N/A';
-      $extraText.innerText = '';
-      return;
-    }
+  //   const $textElement = $('#aqi-text-value');
+  //   const $extraText = $('#aqi-text-extra');
+  //   if (level === 'N/A') {
+  //     $textElement.innerText = 'N/A';
+  //     $extraText.innerText = '';
+  //     return;
+  //   }
 
-    if (level === 'UNHEALTHY-SENSITIVE') {
-      $textElement.innerText = 'Unhealthy';
-      $extraText.innerText = 'for Sensitive Group';
-      return;
-    }
+  //   if (level === 'UNHEALTHY-SENSITIVE') {
+  //     $textElement.innerText = 'Unhealthy';
+  //     $extraText.innerText = 'for Sensitive Group';
+  //     return;
+  //   }
 
-    if (level === 'VERY-UNHEALTHY') {
-      $textElement.innerText = 'Very Unhealthy';
-      return;
-    }
+  //   if (level === 'VERY-UNHEALTHY') {
+  //     $textElement.innerText = 'Very Unhealthy';
+  //     return;
+  //   }
 
-    $textElement.innerText = level.toLowerCase();
-  }
+  //   $textElement.innerText = level.toLowerCase();
+  // }
 
   function setPageTitle(title) {
     document.title = `${title} - Chiang Mai AQI`;
